@@ -1,7 +1,7 @@
 package com.phuocnguyen.app.ngxblobsadvice.config;
 
+import com.phuocnguyen.app.ngxblobsadvice.service.NgxGlobalExceptionService;
 import com.sivaos.Model.Response.Original.EntityNotFoundExceptionResponse;
-import com.sivaos.Service.GlobalExceptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -33,109 +33,109 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class AdviceGlobalConfig extends ResponseEntityExceptionHandler {
 
-    private final GlobalExceptionService globalExceptionService;
+    private final NgxGlobalExceptionService ngxGlobalExceptionService;
 
     @Autowired
-    public AdviceGlobalConfig(GlobalExceptionService globalExceptionService) {
-        this.globalExceptionService = globalExceptionService;
+    public AdviceGlobalConfig(NgxGlobalExceptionService ngxGlobalExceptionService) {
+        this.ngxGlobalExceptionService = ngxGlobalExceptionService;
     }
 
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(
             MissingServletRequestParameterException ex, HttpHeaders headers,
             HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleMissingServletRequestParameter(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleMissingServletRequestParameter(ex, headers, status, request);
     }
 
 
     @Override
     protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleHttpMediaTypeNotSupported(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleHttpMediaTypeNotSupported(ex, headers, status, request);
     }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleMethodArgumentNotValid(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleMethodArgumentNotValid(ex, headers, status, request);
     }
 
     @ExceptionHandler(javax.validation.ConstraintViolationException.class)
     protected ResponseEntity<Object> handleConstraintViolation(
             javax.validation.ConstraintViolationException ex) {
-        return globalExceptionService.handleConstraintViolation(ex);
+        return ngxGlobalExceptionService.handleConstraintViolation(ex);
     }
 
     @ExceptionHandler(EntityNotFoundExceptionResponse.class)
     protected ResponseEntity<Object> handleEntityNotFound(
             EntityNotFoundExceptionResponse ex) {
-        return globalExceptionService.handleEntityNotFound(ex);
+        return ngxGlobalExceptionService.handleEntityNotFound(ex);
     }
 
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleHttpMessageNotReadable(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleHttpMessageNotReadable(ex, headers, status, request);
     }
 
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotWritable(HttpMessageNotWritableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleHttpMessageNotWritable(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleHttpMessageNotWritable(ex, headers, status, request);
     }
 
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(
             NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleNoHandlerFoundException(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleNoHandlerFoundException(ex, headers, status, request);
     }
 
     @ExceptionHandler(javax.persistence.EntityNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(javax.persistence.EntityNotFoundException ex) {
-        return globalExceptionService.handleEntityNotFound(ex);
+        return ngxGlobalExceptionService.handleEntityNotFound(ex);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     protected ResponseEntity<Object> handleDataIntegrityViolation(DataIntegrityViolationException ex,
                                                                   WebRequest request) {
-        return globalExceptionService.handleDataIntegrityViolation(ex, request);
+        return ngxGlobalExceptionService.handleDataIntegrityViolation(ex, request);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     protected ResponseEntity<Object> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex,
                                                                       WebRequest request) {
-        return globalExceptionService.handleMethodArgumentTypeMismatch(ex, request);
+        return ngxGlobalExceptionService.handleMethodArgumentTypeMismatch(ex, request);
     }
 
     @ExceptionHandler({AccessDeniedException.class})
     public ResponseEntity<Object> handleAccessDeniedException(final Exception ex, final WebRequest request) {
-        return globalExceptionService.handleAccessDeniedException(ex, request);
+        return ngxGlobalExceptionService.handleAccessDeniedException(ex, request);
     }
 
     @ExceptionHandler({InvalidDataAccessApiUsageException.class, DataAccessException.class})
     protected ResponseEntity<Object> handleConflict(final RuntimeException ex, final WebRequest request) {
-        return globalExceptionService.handleConflict(ex, request);
+        return ngxGlobalExceptionService.handleConflict(ex, request);
     }
 
 
     @ExceptionHandler({NullPointerException.class, IllegalArgumentException.class, IllegalStateException.class})
     public ResponseEntity<Object> handleInternal(final RuntimeException ex, final WebRequest request) {
-        return globalExceptionService.handleInternal(ex, request);
+        return ngxGlobalExceptionService.handleInternal(ex, request);
     }
 
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestPart(MissingServletRequestPartException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleMissingServletRequestPart(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleMissingServletRequestPart(ex, headers, status, request);
     }
 
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleHttpRequestMethodNotSupported(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleHttpRequestMethodNotSupported(ex, headers, status, request);
     }
 
     @Override
     protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return globalExceptionService.handleBindException(ex, headers, status, request);
+        return ngxGlobalExceptionService.handleBindException(ex, headers, status, request);
     }
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<Object> handleMaxSizeException(MaxUploadSizeExceededException ex) {
-        return globalExceptionService.handleMaxSizeException(ex);
+        return ngxGlobalExceptionService.handleMaxSizeException(ex);
     }
 }
